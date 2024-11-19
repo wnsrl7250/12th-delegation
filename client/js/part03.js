@@ -21,11 +21,31 @@ const data = [
   },
 ];
 
+const template = (index, className) => `
+        <span class="${className}">
+          <img src="./assets/part01/${data[index].src}" alt="${data[index].alt}" />
+        </span>
+      `;
 
+const swiper = new Swiper(".swiper", {
+  autoplay: true,
+  loop: true,
+  speed: 2000,
+  parallax: true,
+  pagination: {
+    el: ".navigation",
+    clickable: true,
+    // type:'custom',
+    bulletClass: "bullet",
+    bulletActiveClass: "is-active",
+    renderBullet: (index, className) => template(index, className),
+  },
+});
 
-
-
-
-
-
-
+swiper
+  .on("slideChange", function (e) {
+    document.querySelector("h3").classList.remove("is-active");
+  })
+  .on("slideChangeTransitionEnd", function () {
+    document.querySelector("h3").classList.add("is-active");
+  });

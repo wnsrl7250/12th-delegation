@@ -58,7 +58,10 @@ function handler(e) {
   gsap.from(split.chars, {
     opacity: 0,
     y: 30,
-    stagger: 0.05,
+    stagger: {
+      amount: 0.5,
+      from: "center",
+    },
     immediateRender: false,
     ease: "back(2)",
   });
